@@ -27,10 +27,6 @@ public class SGraph {
         for (String query : querylist){
         	
         	starttmp = pi.parseQuery(query, sGraph, nodeValue);
-        	starttmp ="aa;bb";
-        	endtmp = starttmp.substring(starttmp.indexOf(";")+1);
-        	starttmp = starttmp.substring(0, starttmp.indexOf(";"));
-        	
         	
         	String result = new uniSearch().get(sGraph, nodeValue, starttmp, endtmp);
         	
