@@ -47,9 +47,10 @@ public class ProblemIO {
 	 * @param nodeValue
 	 * @throws IOException
 	 */
-	public void readEnvTo(Map<String,Map<String,Edge>> sGraph, Map<String,Vertex> nodeValue) 
+	public Map<String,Map<String,Edge>> readEnvTo()
 			throws IOException
 	{
+        Map<String,Map<String,Edge>> sGraph = new HashMap<String,Map<String,Edge>>();
 		FileInputStream environmentInput = new FileInputStream(URL_Environment);
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(environmentInput));  
         
@@ -70,22 +71,22 @@ public class ProblemIO {
         	edgeN.put(roadName,nLots);
         	
         	if (!nodeValue.containsKey(start)){
-        		nodeValue.put(start, new Vertex(start));
         		sGraph.put(start, new HashMap<String,Edge>());
         	}
         	
         	if (!nodeValue.containsKey(end)){
-        		nodeValue.put(end, new Vertex(end));
         		sGraph.put(end, new HashMap<String,Edge>());
         	}
         	
         	sGraph.get(start).put(end, new Edge(roadName,roadLength));
         	sGraph.get(end).put(start, new Edge(roadName,roadLength));
         	
-        }	
+        }
         
         environmentInput.close();
         bufferedReader.close();
+        
+        return sGraph;
 	}
 	
 	/**
